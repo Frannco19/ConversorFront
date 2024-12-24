@@ -1,0 +1,153 @@
+main{
+    background-image: url(./../../../../public/img/fondoPantallaConversor.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.WelcomeLogin {
+    text-align: center;
+    padding: 20px;
+}
+
+.WelcomeLogin h2 {
+    font-size: 36px;
+    color: #ffd000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+}
+
+.login {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(82 75 75 / 32%);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 60vh;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginTitle {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.loginContent form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+}
+
+.loginFields div {
+    margin-bottom: 2rem;
+}
+
+.loginFields input {
+    width: 100%;
+    padding: 0.45rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #ffffff;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+
+
+.buttonLog {
+    text-align: center;
+}
+
+.buttonLog button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #7a00ff4d;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.buttonLog button:hover {
+    background-color:#7b00ff81;
+}
+
+.footer-description {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.buttonRegister {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    cursor: pointer;
+    justify-content: center;
+}
+
+footer ul {
+    list-style: none;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+footer ul li {
+    margin: 0 10px;
+}
+
+footer ul li a {
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    padding-right: 40px;
+}
+
+.input-container button {
+    position: absolute;
+    top: 70%;
+    right: 3px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
