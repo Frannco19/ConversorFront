@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@use "./../public/styles/colors.scss";
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    overflow-y: auto;
+    /* Esto habilita el scroll solo en el eje vertical cuando el contenido excede la altura del contenedor */
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 80vh; /* Ajusta el valor según el espacio que desees ocupar */
+    overflow-y: auto; /* Activa el scroll interno cuando el contenido excede la altura */
+}
+
+input,
+select,
+button {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+table{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}

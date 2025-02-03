@@ -1,1 +1,53 @@
-<p>login works!</p>
+<main>
+    <section class="login-container">
+        <section class="login">
+            <header>
+                <h1 class="loginTitle"> ConverosrApp </h1>
+                <h1 class="loginTitle"> Iniciar Sesion</h1>
+            </header>
+            <section class="loginContent">
+                <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                    <section class="loginFields">
+                        <div class="color-letter">
+                            <label for="username">Usuario </label>
+                            <input type="text" id="username" placeholder="Usuario" name="username" ngModel required>
+                        </div>
+                        <div class="input-container">
+                            <label for="password">Contraseña</label>
+                            <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Contraseña"
+                                name="password" ngModel required>
+
+                            <button type="button" (click)="togglePasswordVisibility()">
+                                <img [src]="showPassword ? 'img/icons/EyeOpen.png' : 'img/icons/EyeClose.png'"
+                                    alt="Toggle Password Visibility" style="width: 25px; height: 25px;">
+                            </button>
+                        </div>
+
+                    </section>
+
+                    <section class="loginbutton">
+                        <div class="buttonLog">
+                            <button class="button" type="submit"><span> Iniciar Sesion</span></button>
+                        </div>
+                    </section>
+                </form>
+            </section>
+            <footer>
+                <p class="footer-description">¿Todavia no estas registrado?</p>
+                <section class="loginbutton">
+                    <div class="buttonLog">
+                        <button class="button" [routerLink]="['/register']"><span> Registrarse
+                            </span></button>
+                    </div>
+                </section>
+            </footer>
+        </section>
+
+        <section class="WelcomeLogin">
+            <h2>ConversorApp</h2>
+
+        </section>
+
+    </section>
+</main>
+
