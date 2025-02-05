@@ -50,7 +50,7 @@ export class LoginComponent {
           contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
         }
         if (confirmButton){
-          confirmButton.style.backgroundColor = '#ffd000'; 
+          confirmButton.style.backgroundColor = '#80ff56'; 
           confirmButton.style.color = 'black'; 
           confirmButton.style.border = 'none'; 
         }
@@ -73,7 +73,7 @@ export class LoginComponent {
           contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
         }
         if (confirmButton){
-          confirmButton.style.backgroundColor = '#ffd000'; 
+          confirmButton.style.backgroundColor = '#80ff56'; 
           confirmButton.style.color = 'black'; 
           confirmButton.style.border = 'none'; 
         }

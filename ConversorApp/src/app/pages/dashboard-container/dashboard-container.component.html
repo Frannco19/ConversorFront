@@ -1,1 +1,20 @@
-<p>dashboard-container works!</p>
+<header>
+    <div class="header-container">
+        <h1>ConversorApp</h1>
+        <nav>
+            <a [routerLink]="['/converter']" routerLinkActive="link-active">Conversor</a>
+            @if(esAdmin){
+            <a [routerLink]="['/admin-user']" routerLinkActive="link-active">User Admin</a>
+            <a [routerLink]="['/admin-currency']" routerLinkActive="link-active">Monedas Admin</a>
+            <a [routerLink]="['/update-subscription']" routerLinkActive="link-active">Actualizar Subscripcion</a>
+            }
+            <div class="usuario">
+                <a><img src="img/icons/avatar.png"></a>
+                <div class="dropdown">
+                    <button (click)="cerrarSesion()">Cerrar sesión</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<router-outlet />

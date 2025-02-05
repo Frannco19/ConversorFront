@@ -6,44 +6,45 @@ import { ConverterComponent } from './pages/converter/converter.component';
 import { AdminUserComponent } from './pages/admin-user/admin-user.component';
 import { AdminCurrencyComponent } from './pages/admin-currency/admin-currency.component';
 import { UpdateSubscriptionComponent } from './pages/update-subscription/update-subscription.component';
+import { DashboardContainerComponent } from './pages/dashboard-container/dashboard-container.component';
 
 export const routes: Routes = [
     {
-        path:"",
-        component: LoginComponent
-    },
-    {
-        path:"login",
-        component: LoginComponent
-    },
-    {
-        path:"register",
-        component: RegisterComponent
-    },
-    {
-        path:"converter",
-        component: ConverterComponent,
-        children:[
+        path: "",
+        component: DashboardContainerComponent,
+        children: [
             {
-                path:"admin-user",
+                path: "converter",
+                component: ConverterComponent
+            },
+            {
+                path: "admin-user",
                 component: AdminUserComponent
             },
             {
-                path:"admin-currency",
+                path: "admin-currency",
                 component: AdminCurrencyComponent
             },
             {
-                path:"update-subscription",
+                path: "update-subscription",
                 component: UpdateSubscriptionComponent
             },
         ]
     },
     {
-        path:"not-found",
+        path: "login",
+        component: LoginComponent
+    },
+    {
+        path: "register",
+        component: RegisterComponent
+    },
+    {
+        path: "not-found",
         component: NotFoundComponent
     },
     {
-        path:"**",
+        path: "**",
         redirectTo: "not-found",
         pathMatch: "full"
     }
