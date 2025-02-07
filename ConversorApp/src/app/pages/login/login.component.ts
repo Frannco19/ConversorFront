@@ -20,7 +20,9 @@ export class LoginComponent {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
+  
   errorLogin = false;
+
   async login(loginForm: NgForm) {
     const { username, password } = loginForm.value;
 
@@ -31,9 +33,16 @@ export class LoginComponent {
     }
 
     const loginData = { username, password };
-    //const res = await this.authService.login(loginData);
+    const res = await this.authService.login(loginData);
 
-    
+    if (res) { 
+      this.router.navigate(['/converter']).then(() => {
+        console.log('Redirigido al conversor');
+      });
+    } else {
+      this.errorLogin = true;
+      this.loginFail();
+    }
   }
 
   loginFail() {

@@ -8,16 +8,12 @@
             <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
                 <section class="registerFields">
                     <div class="colorletter-register">
+                        <label for="email">Email </label>
+                        <input type="text" id="email" placeholder="Email" name="email" ngModel required>
+                    </div>
+                    <div class="colorletter-register">
                         <label for="username">Usuario </label>
                         <input type="text" id="username" placeholder="Usuario" name="username" ngModel required>
-                    </div>
-                    <div class="colorletter-register">
-                        <label for="nombre">Nombre </label>
-                        <input type="text" id="nombre" placeholder="Nombre" name="nombre" ngModel required>
-                    </div>
-                    <div class="colorletter-register">
-                        <label for="apellido">Apellido </label>
-                        <input type="text" id="apellido" placeholder="Apellido" name="apellido" ngModel required>
                     </div>
                     <div class="input-container">
                         <label for="password">Contraseña</label>
