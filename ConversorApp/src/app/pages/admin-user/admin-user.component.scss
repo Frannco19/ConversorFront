@@ -1,0 +1,102 @@
+.user-admin-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 100vh;
+    background-image: url(./../../../../public/img/fondoverde.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    gap: 20px;
+  }
+
+  .user-panel, .update-panel {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 45%;
+    max-width: 900px;
+    margin: 20px 0;
+    max-height: 70vh;  // Ajusta la altura máxima según lo que prefieras
+    overflow-y: auto; 
+  }
+  
+
+  .user-panel h1, .update-panel h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #388E3C;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+  }
+
+  .actions button:first-child {
+    background-color: #2196F3;
+  }
+
+  .actions button:first-child:hover {
+    background-color: #1976D2;
+  }
+
+  .actions button:last-child {
+    background-color: #F44336;
+  }
+
+  .actions button:last-child:hover {
+    background-color: #D32F2F;
+  }

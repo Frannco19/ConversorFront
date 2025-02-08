@@ -1,1 +1,58 @@
-<p>admin-user works!</p>
+<main class="user-admin-container">
+  <!-- Panel de Usuarios -->
+  <section class="user-panel">
+    <h2>Lista de Usuarios</h2>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Suscripción</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.subscriptionId }}</td>
+          <td>{{ user.isActive ? 'Activo' : 'Inactivo' }}</td>
+          <td>
+            <button (click)="selectUserForUpdate(user)">Actualizar</button>
+            <button (click)="deactivateUser(user.id)" [disabled]="!user.isActive">Desactivar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Panel de Gestión de Usuarios -->
+  <section class="user-panel">
+    <h2>Gestión de Usuarios</h2>
+
+    <!-- Formulario para Crear Usuario -->
+    <div>
+      <h3>Crear Usuario</h3>
+      <input type="text" placeholder="Username" [(ngModel)]="newUser.username" />
+      <input type="email" placeholder="Email" [(ngModel)]="newUser.email" />
+      <input type="password" placeholder="Password" [(ngModel)]="newUser.password" />
+      <input type="number" placeholder="ID de Suscripción" [(ngModel)]="newUser.subscriptionId" />
+      <button (click)="createUser()">Crear Usuario</button>
+    </div>
+
+    <!-- Formulario para Actualizar Usuario -->
+    <div *ngIf="selectedUser" class="update-panel">
+      <h3>Actualizar Usuario</h3>
+      <input type="text" [(ngModel)]="selectedUser.username" />
+      <input type="email" [(ngModel)]="selectedUser.email" />
+      <input type="password" [(ngModel)]="selectedUser.password" placeholder="Nueva contraseña (opcional)" />
+      <input type="number" [(ngModel)]="selectedUser.subscriptionId" />
+      <button (click)="updateUser()">Actualizar Usuario</button>
+      <button (click)="selectedUser = null">Cancelar</button>
+    </div>
+  </section>
+</main>
+
