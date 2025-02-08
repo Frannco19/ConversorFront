@@ -1,0 +1,56 @@
+.subscription-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(./../../../../public/img/fondoverde.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .update-subscription-panel {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .subscription-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .subscription-table th,
+  .subscription-table td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .subscription-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .subscription-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .subscription-table tbody tr:hover {
+    background-color: #e0f7fa;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }

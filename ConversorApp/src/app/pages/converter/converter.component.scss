@@ -1,5 +1,6 @@
-main{
+main {
     display: flex;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -11,3 +12,98 @@ main{
     padding: 0;
     box-sizing: border-box;
 }
+
+.subscription-panel, .currencies-panel, .converter-panel {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .subscription-panel {
+    width: 20%;
+    min-width: 200px;
+  }
+  
+  .converter-panel {
+    width: 40%;
+    min-width: 300px;
+    padding: 30px;
+  }
+  
+  .currencies-panel {
+    width: 20%;
+    min-width: 200px;
+  }
+  
+  h1, h2, h3 {
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  
+  .converter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+  
+  input[type="number"], select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  .swap-button {
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
+    text-align: center;
+  }
+  
+  .swap-button:hover {
+    transform: rotate(180deg);
+  }
+  
+  .convert-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .convert-button:hover {
+    background-color: #45a049;
+  }
+  
+  #currency-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  #currency-list li {
+    padding: 8px;
+    background: #f4f4f4;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    text-align: center;
+  }

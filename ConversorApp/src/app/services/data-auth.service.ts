@@ -16,6 +16,7 @@ export class DataAuthService {
     const token = localStorage.getItem("authToken");
     if (token) {
       const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+      console.log('isAdmin:', tokenPayload.state);
   
       this.user = {
         username: tokenPayload.Name,

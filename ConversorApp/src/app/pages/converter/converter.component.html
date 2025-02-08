@@ -1,3 +1,45 @@
 <main>
-   
-</main>
+    <!-- Panel de Subscripción e Intentos -->
+    <section class="subscription-panel">
+      <h2>Suscripción</h2>
+      <p id="subscription-type"></p>
+      <h3>Intentos Restantes</h3>
+      <p id="attempts-left"></p>
+    </section>
+  
+    <!-- Panel del Conversor de Divisas -->
+    <section class="converter-panel">
+      <h1>Conversor de Divisas</h1>
+      <div class="converter-form">
+        <div class="form-group">
+          <label for="amount">Importe</label>
+          <input type="number" id="amount">
+        </div>
+  
+        <div class="form-group">
+          <label for="from-currency">De:</label>
+          <select id="from-currency"></select>
+        </div>
+  
+        <div class="swap-button">⇆</div>
+  
+        <div class="form-group">
+          <label for="to-currency">A:</label>
+          <select id="to-currency"></select>
+        </div>
+  
+        <div class="form-group">
+          <label for="result">Resultado</label>
+          <input type="number" id="result" readonly>
+        </div>
+  
+        <button class="convert-button">Convertir</button>
+      </div>
+    </section>
+  
+    <!-- Panel de Monedas Disponibles -->
+    <section class="currencies-panel">
+      <h2>Monedas Disponibles</h2>
+      <ul id="currency-list"></ul>
+    </section>
+  </main>

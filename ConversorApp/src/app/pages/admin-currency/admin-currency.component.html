@@ -1,1 +1,50 @@
-<p>admin-currency works!</p>
+<main class="admin-currency-container">
+    <!-- Panel para Crear Moneda -->
+    <section class="currency-panel">
+      <h1>Crear Nueva Moneda</h1>
+      <form (submit)="addCurrency()">
+        <input type="text" placeholder="Código de Moneda" [(ngModel)]="newCurrency.currencyCode" name="currencyCode" required />
+        <input type="text" placeholder="Leyenda" [(ngModel)]="newCurrency.currencyLegend" name="currencyLegend" required />
+        <input type="text" placeholder="Símbolo" [(ngModel)]="newCurrency.currencySymbol" name="currencySymbol" required />
+        <input type="number" placeholder="Convertibilidad" [(ngModel)]="newCurrency.convertibilityCurrency" name="convertibilityCurrency" required />
+        <button type="submit">Agregar Moneda</button>
+      </form>
+    </section>
+  
+    <!-- Panel para Actualizar Moneda -->
+    <section class="currency-panel">
+      <h1>Actualizar Moneda</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Leyenda</th>
+            <th>Símbolo</th>
+            <th>Convertibilidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let currency of currencies">
+            <td>{{ currency.currencyCode }}</td>
+            <td>{{ currency.currencyLegend }}</td>
+            <td>{{ currency.currencySymbol }}</td>
+            <td>{{ currency.convertibilityCurrency }}</td>
+            <td>
+              <button (click)="selectCurrency(currency)">Actualizar</button>
+              <button (click)="deleteCurrency(currency.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <form *ngIf="selectedCurrency" (submit)="updateCurrency()">
+        <input type="text" [(ngModel)]="selectedCurrency.currencyCode" name="currencyCode" required />
+        <input type="text" [(ngModel)]="selectedCurrency.currencyLegend" name="currencyLegend" required />
+        <input type="text" [(ngModel)]="selectedCurrency.currencySymbol" name="currencySymbol" required />
+        <input type="number" [(ngModel)]="selectedCurrency.convertibilityCurrency" name="convertibilityCurrency" required />
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </section>
+  </main>
+  
