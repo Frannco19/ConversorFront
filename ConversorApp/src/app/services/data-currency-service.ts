@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment.development";
 import { Currency } from "../interfaces/Currency";
+import { ConversionRequest } from '../interfaces/ConversionRequest';
+import { ConversionResponse } from '../interfaces/ConversionResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +54,25 @@ export class DataCurrencyService {
     });
     return res.ok;
   }
+
+  async convertCurrency(request: ConversionRequest): Promise<ConversionResponse | null> {
+    try {
+      const res = await fetch(`${environment.API_URL}api/Currency/convert`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify(request)
+      });
+
+      if (!res.ok) throw new Error('Error al realizar la conversión');
+      return await res.json();
+    } catch (error) {
+      console.error('Error en convertCurrency:', error);
+      return null;
+    }
+  }
+
+
 }

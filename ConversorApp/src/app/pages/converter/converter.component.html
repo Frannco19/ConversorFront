@@ -1,11 +1,13 @@
 <main>
   <!-- Panel de Subscripción e Intentos -->
+
   <section class="subscription-panel">
     <h2>Suscripción</h2>
-    <p id="subscription-type"></p>
+    <p>{{ subscriptionStatus?.subscriptionName || 'Sin Suscripción' }}</p>
     <h3>Intentos Restantes</h3>
-    <p id="attempts-left"></p>
+    <p>{{ subscriptionStatus?.conversionMaked ?? 'N/A' }}</p>
   </section>
+
 
   <!-- Panel del Conversor de Divisas -->
   <section class="converter-panel">
@@ -13,7 +15,7 @@
     <div class="converter-form">
       <div class="form-group">
         <label for="amount">Importe</label>
-        <input type="number" id="amount">
+        <input type="number" id="amount" [(ngModel)]="amount">
       </div>
 
       <div class="form-group">
@@ -24,9 +26,9 @@
           </option>
         </select>
       </div>
-      
+
       <div class="swap-button" (click)="swapCurrencies()">⇆</div>
-      
+
       <div class="form-group">
         <label for="to-currency">A:</label>
         <select id="to-currency" [(ngModel)]="toCurrency">
@@ -38,10 +40,10 @@
 
       <div class="form-group">
         <label for="result">Resultado</label>
-        <input type="number" id="result" readonly>
+        <input type="number" id="result" [value]="convertedAmount" readonly>
       </div>
 
-      <button class="convert-button">Convertir</button>
+      <button class="convert-button" (click)="convert()">Convertir</button>
     </div>
   </section>
 
@@ -50,7 +52,7 @@
     <h2>Monedas Disponibles</h2>
     <ul>
       <li *ngFor="let currency of currencies">
-        <strong>{{ currency.currencyCode }}</strong> - {{ currency.currencyLegend }} 
+        <strong>{{ currency.currencyCode }}</strong> - {{ currency.currencyLegend }}
         <br>
         <span>Convertibilidad: {{ currency.convertibilityCurrency }}</span>
       </li>

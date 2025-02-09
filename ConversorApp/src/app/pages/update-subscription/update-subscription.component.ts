@@ -66,9 +66,9 @@ export class UpdateSubscriptionComponent {
         if (contentEl) contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
         if (confirmButton) {
           confirmButton.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-          confirmButton.style.backgroundColor = '#4CAF50';  // ✅ Verde
-          confirmButton.style.color = 'white';              // ✅ Texto blanco
-          confirmButton.style.border = 'none';              // ✅ Sin borde
+          confirmButton.style.backgroundColor = '#4CAF50';  
+          confirmButton.style.color = 'white';              
+          confirmButton.style.border = 'none';              
         }
         if (cancelButton) cancelButton.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
       }

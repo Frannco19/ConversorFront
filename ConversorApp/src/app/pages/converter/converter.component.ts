@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Currency } from '../../interfaces/Currency';
 import { DataCurrencyService } from '../../services/data-currency-service';
 import { FormsModule } from '@angular/forms';
+import { SubscriptionStatus } from '../../interfaces/SubscriptionStatus';
+import { DataSubscriptionService } from '../../services/data-subscription.service';
+import { DataAuthService } from '../../services/data-auth.service';
+import { ConversionRequest } from '../../interfaces/ConversionRequest';
 
 @Component({
   selector: 'app-converter',
@@ -13,13 +17,48 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './converter.component.scss'
 })
 export class ConverterComponent {
+  subscriptionStatus: SubscriptionStatus | null = null;
+  subscriptionService = inject(DataSubscriptionService);
+  authService = inject(DataAuthService);
   currencies: Currency[] = [];
   fromCurrency: string = '';
   toCurrency: string = '';
+  amount: number = 0;
   currencyService = inject(DataCurrencyService);
-
+  convertedAmount: number | null = null;
+  
   constructor() {
     this.loadCurrencies();
+    this.loadSubscriptionStatus();
+  }
+
+  async convert() {
+    const request: ConversionRequest = {
+      fromCurrencyCode: this.fromCurrency,
+      toCurrencyCode: this.toCurrency,
+      amount: this.amount
+    };
+
+    const response = await this.currencyService.convertCurrency(request);
+
+    if (response) {
+      this.convertedAmount = response.convertedAmount;
+      await this.loadSubscriptionStatus();
+    } else {
+      console.error('Error en la conversión.');
+    }
+  }
+
+  async loadSubscriptionStatus() {
+    const user = this.authService.user;
+    if (user) {
+      try {
+        const status = await this.subscriptionService.getCurrentSubscriptionStatus(user.userId);
+        this.subscriptionStatus = status;
+      } catch (error) {
+        console.error('Error al cargar el estado de la suscripción:', error);
+      }
+    }
   }
 
   async loadCurrencies() {
@@ -39,4 +78,6 @@ export class ConverterComponent {
     this.fromCurrency = this.toCurrency;
     this.toCurrency = temp;
   }
+
+
 }

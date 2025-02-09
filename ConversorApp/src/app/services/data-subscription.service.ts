@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment.development";
 import { UserSubscriptionDetails } from '../interfaces/userSubscriptionDetails';
+import { SubscriptionStatus } from '../interfaces/SubscriptionStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,37 @@ export class DataSubscriptionService {
       return await res.json();
     } catch (error) {
       console.error('Error en assignSubscriptionToUser:', error);
+      return null;
+    }
+  }
+
+  async getCurrentSubscriptionStatus(userId: number): Promise<SubscriptionStatus | null> {
+    try {
+      const res = await fetch(`${environment.API_URL}api/User/user/details`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
+
+      if (!res.ok) throw new Error('Error al obtener el estado de la suscripción');
+      const data = await res.json();
+
+      const assignRes = await fetch(`${environment.API_URL}api/Subscription/assign`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify({ UserId: userId, SubscriptionId: data.subscriptionId })
+      });
+
+      if (!assignRes.ok) throw new Error('Error al obtener el estado de la suscripción');
+      const assignData = await assignRes.json();
+      return assignData.status;
+    } catch (error) {
+      console.error('Error en getCurrentSubscriptionStatus:', error);
       return null;
     }
   }
