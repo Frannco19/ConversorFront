@@ -25,6 +25,51 @@ main {
     gap: 15px;
   }
   
+  /* Estilo específico para el panel de monedas */
+.currencies-panel {
+  width: 100%;
+  max-width: 500px;
+  overflow-y: auto; /* Habilita el scroll si hay muchas monedas */
+  max-height: 300px; /* Altura máxima antes de que aparezca el scroll */
+}
+
+.currencies-panel h2 {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+.currencies-panel ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.currencies-panel li span {
+  display: block;
+  color: #388E3C;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+
+.currencies-panel li {
+  background-color: #f9f9f9;
+  padding: 12px 15px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  font-weight: bold;
+}
+
+.currencies-panel li:hover {
+  background-color: #e0f7fa;
+  cursor: pointer;
+}
+
   .subscription-panel {
     width: 20%;
     min-width: 200px;
@@ -47,6 +92,7 @@ main {
   }
   
   .converter-form {
+    align-items: center; 
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -107,3 +153,25 @@ main {
     border-radius: 4px;
     text-align: center;
   }
+
+  .swap-button {
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  
+    &:hover {
+      background-color: #388E3C;
+      transform: rotate(180deg);
+    }
+  }
+  

@@ -1,22 +1,32 @@
 <main class="subscription-container">
-    <!-- Panel de Actualización de Suscripción -->
-    <section class="update-subscription-panel">
-      <h1>Actualizar Suscripción</h1>
-  
-      <table class="subscription-table">
-        <thead>
-          <tr>
-            <th>Nombre de la Suscripción</th>
-            <th>Límite de Conversiones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let subscription of subscriptions">
-            <td>{{ subscription.subscriptionName }}</td>
-            <td>{{ subscription.subcount }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+  <!-- Panel de Actualización de Suscripción -->
+  <section class="update-subscription-panel">
+    <h1>Actualizar Suscripción</h1>
+
+    <table class="subscription-table">
+      <thead>
+        <tr>
+          <th>Nombre de la Suscripción</th>
+          <th>Límite de Conversiones</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subscription of subscriptions">
+          <td>{{ subscription.subscriptionName }}</td>
+          <td>{{ subscription.subcount }}</td>
+          <td>
+            <button *ngIf="subscription.subscriptionId !== currentSubscriptionId" 
+                    (click)="confirmSubscriptionChange(authService.user?.userId, subscription.subscriptionId)">
+              Seleccionar
+            </button>
+            <span *ngIf="subscription.subscriptionId === currentSubscriptionId">Tu Subscripción Actual</span>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
   

@@ -10,7 +10,7 @@ import { LoginRequest, LoginResponse } from "../interfaces/LoginRequest";
 
 export class DataAuthService {
 
-  user: { username: string; token: string; isAdmin: boolean } | undefined;
+  user: { userId: number, username: string; token: string; isAdmin: boolean } | undefined;
 
   constructor() {
     const token = localStorage.getItem("authToken");
@@ -19,6 +19,7 @@ export class DataAuthService {
       console.log('isAdmin:', tokenPayload.state);
   
       this.user = {
+        userId: tokenPayload.sub,
         username: tokenPayload.Name,
         token: token,
         isAdmin: tokenPayload.state === "True"  // 🚀 Persistimos la info del rol
@@ -47,6 +48,7 @@ export class DataAuthService {
     const tokenPayload = JSON.parse(atob(resJson.token.split('.')[1]));
   
     this.user = {
+      userId: Number(tokenPayload.sub),
       username: tokenPayload.Name,
       token: resJson.token,
       isAdmin: tokenPayload.state === "True"  // ✅ Convertimos "True"/"False" a booleano
@@ -82,7 +84,14 @@ export class DataAuthService {
   loadUserFromToken(): void {
     const token = this.getToken();
     if (token) {
-      this.user = { username: '', token, isAdmin: false };
+      const tokenPayload = JSON.parse(atob(token.split('.')[1])); // ✅ Decodificar el token
+  
+      this.user = {
+        userId: Number(tokenPayload.sub),     // ✅ ID del usuario extraído del token
+        username: tokenPayload.Name,          // ✅ Nombre del usuario extraído del token
+        token: token,                         // ✅ Token actual
+        isAdmin: tokenPayload.state === "True" // ✅ Conversión del estado de admin a booleano
+      };
     }
   }
 
