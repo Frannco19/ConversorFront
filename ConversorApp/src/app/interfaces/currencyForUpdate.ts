@@ -1,5 +1,4 @@
-export interface Currency {
-    currencyId: number;
+export interface CurrencyForUpdate{
     currencyCode: string;
     currencyLegend: string;
     currencySymbol: string;

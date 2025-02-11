@@ -1,56 +1,94 @@
 .subscription-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url(./../../../../public/img/fondoverde.jpg);
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(./../../../../public/img/fondoverde.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.update-subscription-panel {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subscription-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.subscription-card {
+  background: #fff;
+  border: 2px solid #4CAF50;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
   }
-  
-  .update-subscription-panel {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+
+  p {
+    color: #555;
+    margin: 5px 0;
+    font-size: 1rem;
   }
-  
-  h1 {
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: #333;
-  }
-  
-  .subscription-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .subscription-table th,
-  .subscription-table td {
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
-  
-  .subscription-table th {
+
+  button {
     background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #388E3C;
+      transform: scale(1.05);
+    }
+  }
+
+  &.active {
+    background: #e8f5e9;
+    border-color: #2e7d32;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+    transform: scale(1.05);
+  }
+
+  .current-badge {
+    background-color: #2e7d32;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
     font-weight: bold;
   }
-  
-  .subscription-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .subscription-table tbody tr:hover {
-    background-color: #e0f7fa;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+}

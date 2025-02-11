@@ -11,10 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard-container.component.scss'
 })
 export class DashboardContainerComponent {
-  esAdmin = true;
+  router = inject(Router);
   authService = inject(DataAuthService);
   user = this.authService.user; 
-  router = inject(Router);
 
   cerrarSesion(){
     this.authService.logOut();

@@ -3,11 +3,20 @@ import { environment } from "../../environments/environment.development";
 import { Currency } from "../interfaces/Currency";
 import { ConversionRequest } from '../interfaces/ConversionRequest';
 import { ConversionResponse } from '../interfaces/ConversionResponse';
+import { CurrencyForUpdate } from '../interfaces/currencyForUpdate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataCurrencyService {
+
+  // Aquí almacenaremos las monedas cargadas
+  currencies: Currency[] = [];
+
+  constructor() {
+    // Se carga automáticamente al instanciar el servicio
+    this.getAllCurrencies();
+  }
 
   async getAllCurrencies(): Promise<Currency[]> {
     const res = await fetch(`${environment.API_URL}api/Currency/currencies`, {
@@ -22,7 +31,7 @@ export class DataCurrencyService {
   }
 
   async addCurrency(currency: Currency): Promise<boolean> {
-    const res = await fetch(`${environment.API_URL}api/Currency/currencies`, {
+    const res = await fetch(`${environment.API_URL}api/Currency/currency`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +42,8 @@ export class DataCurrencyService {
     return res.ok;
   }
 
-  async updateCurrency(id: number, currency: Currency): Promise<boolean> {
+  async updateCurrency(id: number, currency: CurrencyForUpdate): Promise<boolean> {
+    console.log("Datos enviados al backend:", currency);
     const res = await fetch(`${environment.API_URL}api/Currency/currency/${id}`, {
       method: 'PUT',
       headers: {

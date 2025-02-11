@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataAuthService } from '../../services/data-auth.service';
+import { ModalService } from '../../services/modal-service';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,11 @@ import { DataAuthService } from '../../services/data-auth.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-
   errorRegister = false;
   authService = inject(DataAuthService)
   router = inject(Router)
   showPassword: boolean = false; 
+  modalService = inject(ModalService);
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -32,52 +33,22 @@ export class RegisterComponent {
 
     const res = await this.authService.register(registerData)
 
-    if (res.success) {  
+    if (res.success) {
       console.log(res.message);
-      this.router.navigate(['/login']).then(() => (
-        Swal.fire({
-          title: "Registro Exitoso!",
-          text: "",
-          icon: "success",
-          confirmButtonColor: "#3085d6", 
-          willOpen: () => {
-            const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-            const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-            if (titleEl) {
-              titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-              titleEl.style.color = "#4CAF50"; 
-            }
-            if (contentEl) {
-              contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-            }
-          }
-        })
-      ));
-    } else this.errorRegister= true;
+      this.router.navigate(['/login']).then(() => {
+        this.modalService.showSuccess("Registro Exitoso!", "¡Bienvenido!");
+      });
+    } else {
+      this.errorRegister = true;
+      this.modalService.showError("Error en el registro", "Inténtalo de nuevo más tarde.");
+    }
   }
 
   registerFail() {
-    Swal.fire({
-      title: "Campo/s incompleto!",
-      willOpen: () => {
-        const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-        const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-        if (titleEl) {
-          titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (contentEl) {
-          contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (confirmButton){
-          confirmButton.style.backgroundColor = '#80ff56'; 
-          confirmButton.style.color = 'black'; 
-          confirmButton.style.border = 'none'; 
-        }
-      },
-      confirmButtonText: "Intentar de nuevo"
-    });
+    this.modalService.showError("Campo/s incompleto!", "Intentar de nuevo");
   }
 
-
+  registerSuccess() {
+    this.modalService.showSuccess("Registro Exitoso!", "¡Bienvenido!");
+  }
 }

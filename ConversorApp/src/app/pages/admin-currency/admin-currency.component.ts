@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class AdminCurrencyComponent {
   currencies: Currency[] = [];
   currencyService = inject(DataCurrencyService)
-  newCurrency: Currency = { id: 0, currencyCode: '', currencyLegend: '', currencySymbol: '', convertibilityCurrency: 0 };
+  newCurrency: Currency = { currencyId: 0, currencyCode: '', currencyLegend: '', currencySymbol: '', convertibilityCurrency: 0 };
   selectedCurrency: Currency | null = null;
 
   constructor() {
@@ -29,16 +29,17 @@ export class AdminCurrencyComponent {
   async addCurrency() {
     if (await this.currencyService.addCurrency(this.newCurrency)) {
       this.loadCurrencies();
-      this.newCurrency = { id: 0, currencyCode: '', currencyLegend: '', currencySymbol: '', convertibilityCurrency: 0 };
+      this.newCurrency = { currencyId: 0, currencyCode: '', currencyLegend: '', currencySymbol: '', convertibilityCurrency: 0 };
     }
   }
 
   selectCurrency(currency: Currency) {
+    console.log('Moneda seleccionada:', currency);
     this.selectedCurrency = { ...currency };
   }
 
   async updateCurrency() {
-    if (this.selectedCurrency && await this.currencyService.updateCurrency(this.selectedCurrency.id, this.selectedCurrency)) {
+    if (this.selectedCurrency && await this.currencyService.updateCurrency(this.selectedCurrency.currencyId, this.selectedCurrency)) {
       this.loadCurrencies();
       this.selectedCurrency = null;
     }

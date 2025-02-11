@@ -4,6 +4,7 @@ import { Subscription } from '../../interfaces/Subscription';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { DataAuthService } from '../../services/data-auth.service';
+import { ModalService } from '../../services/modal-service';
 
 @Component({
   selector: 'app-update-subscription',
@@ -17,6 +18,7 @@ export class UpdateSubscriptionComponent {
   currentSubscriptionId: number | undefined;
   subscriptionService = inject(DataSubscriptionService);
   authService = inject(DataAuthService);
+  modalService = inject(ModalService);
 
   constructor() {
     this.loadSubscriptions();
@@ -43,66 +45,24 @@ export class UpdateSubscriptionComponent {
     }
   }
 
-  async confirmSubscriptionChange(userId: number | undefined, subscriptionId: number) {
-    if (!userId) {
-      console.error('No se pudo obtener el userId del usuario.');
+  confirmSubscriptionChange(userId: number | undefined, subscriptionId: number) {
+    if (userId === undefined) {
+      console.error('El userId no está disponible.');
       return;
     }
 
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: '¿Deseas actualizar tu suscripción?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, actualizar',
-      cancelButtonText: 'Cancelar',
-      willOpen: () => {
-        const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-        const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-        const cancelButton = document.querySelector('.swal2-cancel') as HTMLElement;
-    
-        if (titleEl) titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        if (contentEl) contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        if (confirmButton) {
-          confirmButton.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-          confirmButton.style.backgroundColor = '#4CAF50';  
-          confirmButton.style.color = 'white';              
-          confirmButton.style.border = 'none';              
-        }
-        if (cancelButton) cancelButton.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-      }
-    }).then(async (result) => {
-      if (result.isConfirmed) {
+    this.modalService.showConfirmation(
+      '¿Estás seguro?',
+      '¿Deseas actualizar tu suscripción?',
+      async () => {
         const response = await this.subscriptionService.assignSubscriptionToUser(userId, subscriptionId);
         if (response) {
-          Swal.fire({
-            title: 'Actualizado',
-            text: 'Tu suscripción ha sido actualizada.',
-            icon: 'success',
-            willOpen: () => {
-              const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-              const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-              if (titleEl) titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-              if (contentEl) contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-            }
-          });
+          this.modalService.showSuccess("Actualizado", "Tu suscripción ha sido actualizada.");
           this.loadCurrentSubscription();
         } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'Hubo un problema al actualizar la suscripción.',
-            icon: 'error',
-            willOpen: () => {
-              const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-              const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-              if (titleEl) titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-              if (contentEl) contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-            }
-          });
+          this.modalService.showError("Error", "Hubo un problema al actualizar la suscripción.");
         }
       }
-    });
-    
+    );
   }
 }

@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DataAuthService } from '../../services/data-auth.service';
+import { ModalService } from '../../services/modal-service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,10 @@ import { DataAuthService } from '../../services/data-auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
   authService = inject(DataAuthService)
   router = inject(Router);
   showPassword: boolean = false; 
+  modalService = inject(ModalService);
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -28,7 +29,7 @@ export class LoginComponent {
 
     if (!username || !password) {
       this.errorLogin = true;
-      this.LoginEmptyFields();
+      this.loginEmptyFields();
       return;
     }
 
@@ -37,7 +38,6 @@ export class LoginComponent {
 
     if (res) { 
       this.router.navigate(['/converter']).then(() => {
-        console.log('Redirigido al conversor');
       });
     } else {
       this.errorLogin = true;
@@ -46,49 +46,11 @@ export class LoginComponent {
   }
 
   loginFail() {
-    Swal.fire({
-      title: "Usuario y/o contraseña incorrecto/s!",
-      willOpen: () => {
-        const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-        const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-        if (titleEl) {
-          titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (contentEl) {
-          contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (confirmButton){
-          confirmButton.style.backgroundColor = '#80ff56'; 
-          confirmButton.style.color = 'black'; 
-          confirmButton.style.border = 'none'; 
-        }
-      },
-      confirmButtonText: "Intentar de nuevo"
-    });
+    this.modalService.showError("Usuario y/o contraseña incorrecto/s!", "Intentar de nuevo");
   }
 
-  LoginEmptyFields(){
-    Swal.fire({
-      title: "Campo/s vacio!",
-      willOpen: () => {
-        const titleEl = document.querySelector('.swal2-title') as HTMLElement;
-        const contentEl = document.querySelector('.swal2-html-container') as HTMLElement;
-        const confirmButton = document.querySelector('.swal2-confirm') as HTMLElement;
-        if (titleEl) {
-          titleEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (contentEl) {
-          contentEl.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-        }
-        if (confirmButton){
-          confirmButton.style.backgroundColor = '#80ff56'; 
-          confirmButton.style.color = 'black'; 
-          confirmButton.style.border = 'none'; 
-        }
-      },
-      confirmButtonText: "Intentar de nuevo"
-    });
+  loginEmptyFields() {
+    this.modalService.showError("Campo/s vacio!", "Intentar de nuevo");
   }
 
 }

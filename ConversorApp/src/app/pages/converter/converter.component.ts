@@ -17,15 +17,15 @@ import { ConversionRequest } from '../../interfaces/ConversionRequest';
   styleUrl: './converter.component.scss'
 })
 export class ConverterComponent {
-  subscriptionStatus: SubscriptionStatus | null = null;
-  subscriptionService = inject(DataSubscriptionService);
-  authService = inject(DataAuthService);
   currencies: Currency[] = [];
   fromCurrency: string = '';
   toCurrency: string = '';
   amount: number = 0;
-  currencyService = inject(DataCurrencyService);
   convertedAmount: number | null = null;
+  subscriptionStatus: SubscriptionStatus | null = null;
+  currencyService = inject(DataCurrencyService);
+  subscriptionService = inject(DataSubscriptionService);
+  authService = inject(DataAuthService);
   
   constructor() {
     this.loadCurrencies();
@@ -78,6 +78,4 @@ export class ConverterComponent {
     this.fromCurrency = this.toCurrency;
     this.toCurrency = temp;
   }
-
-
 }
