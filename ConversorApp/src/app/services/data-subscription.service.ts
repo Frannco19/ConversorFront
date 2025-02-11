@@ -8,7 +8,9 @@ import { SubscriptionStatus } from '../interfaces/SubscriptionStatus';
 })
 export class DataSubscriptionService {
 
-  constructor() {}
+  constructor() {
+
+  }
 
   async getAllSubscriptions(): Promise<any> {
     try {

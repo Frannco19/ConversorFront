@@ -22,7 +22,7 @@ export class DataAuthService {
         userId: tokenPayload.sub,
         username: tokenPayload.Name,
         token: token,
-        isAdmin: tokenPayload.state === "True"  // 🚀 Persistimos la info del rol
+        isAdmin: tokenPayload.state === "True" 
       };
     }
   }
@@ -44,14 +44,14 @@ export class DataAuthService {
   
     localStorage.setItem("authToken", resJson.token);
   
-    // 🚀 Decodificar el token para obtener los claims
+    //Decodificar el token para obtener los claims
     const tokenPayload = JSON.parse(atob(resJson.token.split('.')[1]));
   
     this.user = {
       userId: Number(tokenPayload.sub),
       username: tokenPayload.Name,
       token: resJson.token,
-      isAdmin: tokenPayload.state === "True"  // ✅ Convertimos "True"/"False" a booleano
+      isAdmin: tokenPayload.state === "True"
     };
   
     return true;
@@ -71,8 +71,8 @@ export class DataAuthService {
         return { success: false, message: errorText };
       }
   
-      const message = await res.text();  // ✅ Procesar el texto de la respuesta
-      return { success: true, message };  // 🚀 Devolver un objeto con el estado y el mensaje
+      const message = await res.text();
+      return { success: true, message };  
     } catch (error) {
       console.error('Error en la solicitud:', error);
       return { success: false, message: 'Error en la conexión con el servidor.' };

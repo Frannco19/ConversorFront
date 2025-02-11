@@ -1,13 +1,11 @@
 <main>
   <!-- Panel de Subscripción e Intentos -->
-
   <section class="subscription-panel">
     <h2>Suscripción</h2>
     <p>{{ subscriptionStatus?.subscriptionName || 'Sin Suscripción' }}</p>
     <h3>Intentos Restantes</h3>
     <p>{{ subscriptionStatus?.conversionMaked ?? 'N/A' }}</p>
   </section>
-
 
   <!-- Panel del Conversor de Divisas -->
   <section class="converter-panel">
@@ -21,9 +19,11 @@
       <div class="form-group">
         <label for="from-currency">De:</label>
         <select id="from-currency" [(ngModel)]="fromCurrency">
-          <option *ngFor="let currency of currencies" [value]="currency.currencyCode">
-            {{ currency.currencyCode }} - {{ currency.currencyLegend }}
-          </option>
+          @for (currency of currencies; track $index) {
+            <option [value]="currency.currencyCode">
+              {{ currency.currencyCode }} - {{ currency.currencyLegend }}
+            </option>
+          }
         </select>
       </div>
 
@@ -32,9 +32,11 @@
       <div class="form-group">
         <label for="to-currency">A:</label>
         <select id="to-currency" [(ngModel)]="toCurrency">
-          <option *ngFor="let currency of currencies" [value]="currency.currencyCode">
-            {{ currency.currencyCode }} - {{ currency.currencyLegend }}
-          </option>
+          @for (currency of currencies; track $index) {
+            <option [value]="currency.currencyCode">
+              {{ currency.currencyCode }} - {{ currency.currencyLegend }}
+            </option>
+          }
         </select>
       </div>
 
@@ -51,12 +53,13 @@
   <section class="currencies-panel">
     <h2>Monedas Disponibles</h2>
     <ul>
-      <li *ngFor="let currency of currencies">
-        <strong>{{ currency.currencyCode }}</strong> - {{ currency.currencyLegend }}
-        <br>
-        <span>Convertibilidad: {{ currency.convertibilityCurrency }}</span>
-      </li>
+      @for (currency of currencies; track $index) {
+        <li>
+          <strong>{{ currency.currencyCode }}</strong> - {{ currency.currencyLegend }}
+          <br>
+          <span>Convertibilidad: {{ currency.convertibilityCurrency }}</span>
+        </li>
+      }
     </ul>
   </section>
-
 </main>

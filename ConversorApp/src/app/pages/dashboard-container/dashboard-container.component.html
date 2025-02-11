@@ -1,19 +1,26 @@
 <header>
-    <div class="header-container">
-      <h1>ConversorApp  | Bienvenido {{ user?.username }} ! </h1>
-      <nav>
-        <a [routerLink]="['/converter']" routerLinkActive="link-active">Conversor</a>
-        <a *ngIf="user?.isAdmin" [routerLink]="['/admin-user']" routerLinkActive="link-active">User Admin</a>
-        <a *ngIf="user?.isAdmin" [routerLink]="['/admin-currency']" routerLinkActive="link-active">Monedas Admin</a>
-        <a [routerLink]="['/update-subscription']" routerLinkActive="link-active">Actualizar Subscripción</a>
-  
-        <div class="usuario">
-          <a><img src="img/icons/avatar.png" alt="avatar"></a>
-          <div class="dropdown">
-            <button (click)="cerrarSesion()">Cerrar sesión</button>
-          </div>
+  <div class="header-container">
+    <h1>ConversorApp | Bienvenido {{ user?.username }} ! </h1>
+    <nav>
+      <a [routerLink]="['/converter']" routerLinkActive="link-active">Conversor</a>
+
+      @if (user?.isAdmin) {
+      <a [routerLink]="['/admin-user']" routerLinkActive="link-active">User Admin</a>
+      }
+
+      @if (user?.isAdmin) {
+      <a [routerLink]="['/admin-currency']" routerLinkActive="link-active">Monedas Admin</a>
+      }
+
+      <a [routerLink]="['/update-subscription']" routerLinkActive="link-active">Actualizar Subscripción</a>
+
+      <div class="usuario">
+        <a><img src="img/icons/avatar.png" alt="avatar"></a>
+        <div class="dropdown">
+          <button (click)="cerrarSesion()">Cerrar sesión</button>
         </div>
-      </nav>
-    </div>
-  </header>
+      </div>
+    </nav>
+  </div>
+</header>
 <router-outlet />

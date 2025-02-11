@@ -3,20 +3,28 @@
     <h1>Gestionar Tu Suscripción</h1>
 
     <div class="subscription-cards">
-      <div *ngFor="let subscription of subscriptions" class="subscription-card" 
-           [class.active]="subscription.subscriptionId === currentSubscriptionId">
-
-        <h2>{{ subscription.subscriptionName }}</h2>
-        <p>Límite de Conversiones: <strong>{{ subscription.subcount }}</strong></p>
-
-        <button *ngIf="subscription.subscriptionId !== currentSubscriptionId" 
-                (click)="confirmSubscriptionChange(authService.user?.userId, subscription.subscriptionId)">
-          Seleccionar
-        </button>
-        <span *ngIf="subscription.subscriptionId === currentSubscriptionId" class="current-badge">
-          Subscripción Actual
-        </span>
-      </div>
+      @for (subscription of subscriptions; track $index) {
+        <div
+          class="subscription-card"
+          [class.active]="subscription.subscriptionId === currentSubscriptionId"
+        >
+          <h2>{{ subscription.subscriptionName }}</h2>
+          <p>Límite de Conversiones: <strong>{{ subscription.subcount }}</strong></p>
+    
+          @if (subscription.subscriptionId !== currentSubscriptionId) {
+            <button
+              (click)="confirmSubscriptionChange(authService.user?.userId, subscription.subscriptionId)"
+            >
+              Seleccionar
+            </button>
+          } @else {
+            <span class="current-badge">
+              Subscripción Actual
+            </span>
+          }
+        </div>
+      }
     </div>
+    
   </section>
 </main>

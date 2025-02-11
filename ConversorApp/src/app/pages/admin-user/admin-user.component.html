@@ -14,17 +14,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.subscriptionId }}</td>
-          <td>{{ user.isActive ? 'Activo' : 'Inactivo' }}</td>
-          <td>
-            <button (click)="selectUserForUpdate(user)">Actualizar</button>
-            <button (click)="deactivateUser(user.id)" [disabled]="!user.isActive">Desactivar</button>
-          </td>
-        </tr>
+        @for (user of users; track $index) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.subscriptionId }}</td>
+            <td>{{ user.isActive ? 'Activo' : 'Inactivo' }}</td>
+            <td>
+              <button (click)="selectUserForUpdate(user)">Actualizar</button>
+              <button 
+                (click)="deactivateUser(user.id)" 
+                [disabled]="!user.isActive"
+              >
+                Desactivar
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </section>
@@ -44,15 +51,23 @@
     </div>
 
     <!-- Formulario para Actualizar Usuario -->
-    <div *ngIf="selectedUser" class="update-panel">
-      <h3>Actualizar Usuario</h3>
-      <input type="text" [(ngModel)]="selectedUser.username" />
-      <input type="email" [(ngModel)]="selectedUser.email" />
-      <input type="password" [(ngModel)]="selectedUser.password" placeholder="Nueva contraseña (opcional)" />
-      <input type="number" [(ngModel)]="selectedUser.subscriptionId" />
-      <button (click)="updateUser()">Actualizar Usuario</button>
-      <button (click)="selectedUser = null">Cancelar</button>
-    </div>
+    @if (selectedUser) {
+      <div class="update-panel">
+        <h3>Actualizar Usuario</h3>
+        <input type="text" [(ngModel)]="selectedUser.username" />
+        <input type="email" [(ngModel)]="selectedUser.email" />
+        <input 
+          type="password" 
+          [(ngModel)]="selectedUser.password" 
+          placeholder="Nueva contraseña (opcional)" 
+        />
+        <input 
+          type="number" 
+          [(ngModel)]="selectedUser.subscriptionId" 
+        />
+        <button (click)="updateUser()">Actualizar Usuario</button>
+        <button (click)="selectedUser = null">Cancelar</button>
+      </div>
+    }
   </section>
 </main>
-
